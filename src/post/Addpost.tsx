@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Alert from 'react-bootstrap/Alert';
 import {useForm} from 'react-hook-form';
 import axios, {AxiosError} from "axios";
 import Modal from 'react-bootstrap/Modal';
@@ -11,6 +12,15 @@ export default function Addpost() {
     const [show, setShow] = useState(false);
     const handleClose = () =>setShow(false);
     const handleShow = () => setShow(true);
+    const [error, setError] = useState(false)
+    const errorDiv = error
+    ? <div className="error">
+        <Alert variant={'danger'}>
+            <i className="material-icons error-icon"></i>
+            {error}
+        </Alert>
+    </div>
+    : '';
 
     const {register, handleSubmit} = useForm();
 
@@ -20,7 +30,7 @@ export default function Addpost() {
         let file = fData.file
         console.log(file)
         formData.append("Text", fData.text)
-        formData.append("file", fData.file)
+        formData.append("file", fData.file[0])
 
         try {
             const response = await axios.post(
@@ -36,6 +46,8 @@ export default function Addpost() {
             handleClose();
 
         } catch (err) {
+            // @ts-ignore
+            setError(err.response.data.message);
             if (err && err instanceof AxiosError)
                 console.log(err.response?.data.message);
             else if (err && err instanceof Error) console.log(err.message);
@@ -73,6 +85,7 @@ export default function Addpost() {
                                 autoFocus
                             />
                             </Form.Group>
+                        {errorDiv}
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>

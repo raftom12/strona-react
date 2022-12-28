@@ -1,53 +1,74 @@
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
-import React, {Component,useEffect} from "react";
 import { render } from "react-dom";
-import InfiniteScroll from "react-infinite-scroll-component";
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import axios, { AxiosError } from 'axios';
-import Post2 from './Post2';
 import './post.scss'
 
-export default function Post(){
-    const list = [];
-    const axios = require('axios');
-    useEffect(()=> {
-        getData(); //fetch data from api
-    }, []);
+import React, { useState } from 'react'
+import InfiniteScroll  from 'react-infinite-scroller'
+import axios, { AxiosError } from 'axios';
 
-    
+export default function Post() {
 
-    const getData = async () => {
-        try {
-            const response = await axios.get('https://localhost:7106/api/posts/1',
+    const [postList, setPostList] = useState([]);
+    const [hasMoreItems, setHasMoreItems] = useState(true);
 
-
-                    {headers: { Authorization: `Bearer ${localStorage.getItem('_auth')}`}}
-
+    const loadPostList = (page: number) => {
+        setTimeout(() => {
+            axios.get('https://localhost:7106/api/posts/1',
+                      {//params: {page} ,
+                          headers: { Authorization: `Bearer ${localStorage.getItem('_auth')}`}}
                     )
-        } catch (err) {
-            if (err && err instanceof AxiosError)
-                console.log(err.response?.data.message);
-            else if (err && err instanceof Error) console.log(err.message);
+            .then((res) => {
+                const newList = postList.concat(res.data);
+                setPostList(newList);
 
-            console.log("Error: ", err);
-        }
-    };
-        return (
-                <>
-                <Container className={'cont'}>
-                <Row xs={1} md={2} className="g-4">
-                    {
-                        Array.from({length: 8}).map((_, idx) => (
-                            <Col>
-                                <Post2 />
-                            </ Col>
-                        ))
-                    }
-                </Row>
-            </Container>
-</>
-        );
+                if(res.data.length===0) {
+                    setHasMoreItems(false);
+                } else {
+                    setHasMoreItems(true);
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            })
 
+        }, 1500)
+    }
+
+    return (
+            <div>
+                <div className="section">
+                    <InfiniteScroll
+                        threshold={0}
+                        pageStart={0}
+                        loadMore={loadPostList}
+                        hasMore={hasMoreItems}
+                        loader={<div className="text-center">loading data ...</div>}>
+                            <Container className={'cont'}>
+                            <Row xs={1} md={2} className="g-4">
+                                {postList.map((post: any, Id) =>(
+                                        <Col>
+                                            <Card key={Id}>
+                                                <Card.Img variant="top"
+                                                    src={post.mediaUrls} alt={"zdj1.jpg"}/>
+                                                <Card.Body>
+                                                    <Card.Header>Header</Card.Header>
+                                                    <Card.Text>
+                                                        {post.text}
+                                                    </Card.Text>
+                                                </ Card.Body>
+                                            </ Card>
+
+                                        </Col>))
+                                }
+                            </Row>
+</Container>
+
+                    </InfiniteScroll>
+                    {hasMoreItems ? "" : <div className="text-center">no data anymore ...</div> }
+                </div>
+            </div>
+            )
 }
