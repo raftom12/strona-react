@@ -1,6 +1,8 @@
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import { render } from "react-dom";
+import ShowPost from './ShowPost';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import './post.scss'
@@ -14,12 +16,30 @@ export default function Post() {
     const [postList, setPostList] = useState([]);
     const [hasMoreItems, setHasMoreItems] = useState(true);
 
+
+
+    const deletePost = (id: number) => {
+        setTimeout(() => {
+            axios.delete(`https://localhost:7106/api/posts/delete`,
+                      {   params:{id},
+                          headers: { Authorization: `Bearer ${localStorage.getItem('_auth')}`}}
+                          )
+            .then((res) => {
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+            window.location.reload();
+}, 15)
+    }
+
+
     const loadPostList = (page: number) => {
         setTimeout(() => {
-            axios.get('https://localhost:7106/api/posts/1',
-                      {//params: {page} ,
+            axios.get(`https://localhost:7106/api/posts/${page}`,
+                      {
                           headers: { Authorization: `Bearer ${localStorage.getItem('_auth')}`}}
-                    )
+                          )
             .then((res) => {
                 const newList = postList.concat(res.data);
                 setPostList(newList);
@@ -58,6 +78,8 @@ export default function Post() {
                                                     <Card.Text>
                                                         {post.text}
                                                     </Card.Text>
+                                                    <Button variant="danger" onClick={() => deletePost(post.id)}>delete</Button>
+                                                    <ShowPost number={post.id}/>
                                                 </ Card.Body>
                                             </ Card>
 

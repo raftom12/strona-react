@@ -32,6 +32,7 @@ export default function Registerf() {
                 data
             );
             handleClose();
+            window.location.reload();
 
         } catch (err) {
             // @ts-ignore
@@ -58,7 +59,7 @@ export default function Registerf() {
                             <Form.Label>Name</Form.Label>
                             <Form.Control
                                 type="text"
-                                {...register("firstName")}
+                                {...register("firstName", { required: true})}
                                 placeholder="firstname"
                                 autoFocus
                             />
@@ -67,7 +68,7 @@ export default function Registerf() {
                             <Form.Label>Surname</Form.Label>
                             <Form.Control
                                 type="text"
-                                {...register("lastName")}
+                                {...register("lastName", { required: true})}
                                 placeholder="lastname"
                                 autoFocus
                             />
@@ -76,7 +77,7 @@ export default function Registerf() {
                             <Form.Label>Email address</Form.Label>
                             <Form.Control
                                 type="email"
-                                {...register("email")
+                                {...register("email", { required: true})
                                 }
                                 placeholder="name@example.com"
                                 autoFocus
@@ -86,7 +87,7 @@ export default function Registerf() {
                             <Form.Label>Username</Form.Label>
                             <Form.Control
                                 type="text"
-                                {...register("username")}
+                                {...register("username", { required: true})}
                                 placeholder="username"
                                 autoFocus
                             />
@@ -95,7 +96,7 @@ export default function Registerf() {
                             <Form.Label>Password</Form.Label>
                             <Form.Control
                                 type="password"
-                                {...register("password")}
+                                {...register("password", { required: true})}
                                 placeholder="password"
                                 autoFocus/>
                         </Form.Group>

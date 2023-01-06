@@ -44,6 +44,7 @@ export default function Addpost() {
                     }
                     );
             handleClose();
+            window.location.reload();
 
         } catch (err) {
             // @ts-ignore
@@ -92,7 +93,7 @@ export default function Addpost() {
                             Close
                         </Button>
                         <Button variant="primary" type="submit">
-                            Register
+                            Submit Post
                         </Button>
                     </Modal.Footer>
                 </Form>
