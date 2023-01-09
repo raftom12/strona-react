@@ -74,7 +74,7 @@ export default function Post() {
                                                 <Card.Img variant="top"
                                                     src={post.mediaUrls} alt={"zdj1.jpg"}/>
                                                 <Card.Body>
-                                                    <Card.Header>Header</Card.Header>
+                                                    <Card.Header>{post.header}</Card.Header>
                                                     <Card.Text>
                                                         {post.text}
                                                     </Card.Text>

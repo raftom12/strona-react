@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Pasek from './nav/Pasek';
-import Post from './post/Post';
-import App from './post/Post';
-import Post2 from './post/Post2';
-import Tryt from './nav/Tryt';
-import Addpost from './post/Addpost';
-import Footer from './footer/Footer'
+import {BrowserRouter} from 'react-router-dom';
+import Pasek from './components/nav/Pasek';
+import Post from './components/post/Post';
+import Footer from './components/footer/Footer';
 import reportWebVitals from './reportWebVitals';
 import {AuthProvider} from "react-auth-kit";
+import App from './App';
+
+
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -17,9 +17,12 @@ const root = ReactDOM.createRoot(
 root.render(
     <React.StrictMode>
         <AuthProvider authType={"localstorage"} authName={"_auth"} >
-            <Pasek/>
-            <Post/>
-            <Footer/>
+
+            <BrowserRouter>
+                <Pasek />
+                <App/>
+                <Footer />
+            </BrowserRouter>
         </AuthProvider>
     </React.StrictMode>
 );

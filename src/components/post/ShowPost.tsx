@@ -14,6 +14,7 @@ export default function ShowPost(props: any) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const [, updateState] = React.useState();
     const postId = props.number
     const [data, setdata] = useState([]);
     const{register, handleSubmit} = useForm();
@@ -40,8 +41,9 @@ export default function ShowPost(props: any) {
                     comentdata,
                     {headers: { Authorization: `Bearer ${localStorage.getItem('_auth')}`}}
                     );
-            window.location.reload();
+            // @ts-ignore
 
+        updateState();
         } catch (err) {
             // @ts-ignore
             setError(err.response.data.message);
@@ -52,16 +54,16 @@ export default function ShowPost(props: any) {
             console.log("Error: ", err);
         }
     };
-
+    const renderheader = (data: any) => {
+        return <p>{data.header}</p>}
     const rendertext = (data: any) => {
         return <p>{data.text}</p>}
     const renderimage = (data: any) => {
-        return <Card.Img variant="top" src={data.mediaUrls} alt={"zdj1.jpg"}/>}
-    const renderlist = (data: any) => {
-        return(<ul>
-            {data?.comments?.map((coment: any, Id:number) =>(<li key={Id}>{coment?.text} </li>))}
+        return <Card.Img variant="top" style={{padding: "16px"}} src={data.mediaUrls} alt={"zdj1.jpg"}/>}
+    const renderlist = (data: any) => { return data?.comments?.map((coment: any, Id: number) =>(<Card style={{ margin: "10px"}} key={Id}><Card.Subtitle className="text-muted">{coment?.user.firstName} {coment?.user.lastName}</Card.Subtitle><Card.Body>{coment?.text}</Card.Body></Card>))}
 
-        </ul>)}
+
+
 
     return (
         <>
@@ -69,7 +71,7 @@ export default function ShowPost(props: any) {
 
         <Modal show={show} size="lg" onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal title</Modal.Title>
+                    <Modal.Title>{renderheader(data)}</Modal.Title>
                 </Modal.Header>
                     {renderimage(data)}
                 <Modal.Body>

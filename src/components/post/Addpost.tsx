@@ -29,6 +29,7 @@ export default function Addpost() {
         const formData = new FormData()
         let file = fData.file
         console.log(file)
+        formData.append("Header", fData.header)
         formData.append("Text", fData.text)
         formData.append("file", fData.file[0])
 
@@ -67,6 +68,15 @@ export default function Addpost() {
                         <Modal.Title>Add Post</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
+                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                            <Form.Label>header</Form.Label>
+                            <Form.Control
+                                type="text"
+                                {...register("header")}
+                                placeholder="header"
+                                autoFocus
+                            />
+                        </Form.Group>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                             <Form.Label>text</Form.Label>
                             <Form.Control

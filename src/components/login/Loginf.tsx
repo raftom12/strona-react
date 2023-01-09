@@ -7,8 +7,11 @@ import Modal from 'react-bootstrap/Modal';
 import axios, { AxiosError } from "axios";
 import { useSignIn } from "react-auth-kit";
 import Nav from 'react-bootstrap/Nav';
+import {useNavigate} from 'react-router-dom';
+
 
 export default function Loginf() {
+    const navigate = useNavigate();
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -39,7 +42,9 @@ export default function Loginf() {
                 authState: { email: data.email },
             });
             handleClose();
+            navigate("/home");
             window.location.reload();
+
         } catch (err) {
             // @ts-ignore
             setError(err.response.data.message);
@@ -56,7 +61,7 @@ export default function Loginf() {
 
     return (
             <>
-            <Nav.Link href="#login" onClick={handleShow}>login</Nav.Link>
+            <Nav.Link onClick={handleShow}>login</Nav.Link>
 
             <Modal show={show} onHide={handleClose}>
                 <Form onSubmit={handleSubmit(onSubmit)}>

@@ -2,12 +2,10 @@ import React, { Component } from "react";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import Loginf from "./Loginf";
 import {withIsAuthenticated} from 'react-auth-kit';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SideBar from './Sidebar';
 import Cond from './Cond';
-import Registerf from "./Registerf";
 
 class Pasek extends Component {
     render() {
