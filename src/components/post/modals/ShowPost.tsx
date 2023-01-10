@@ -12,9 +12,9 @@ import Nav from 'react-bootstrap/Nav';
 
 export default function ShowPost(props: any) {
     const [show, setShow] = useState(false);
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const [, updateState] = React.useState();
     const postId = props.number
     const [data, setdata] = useState([]);
     const{register, handleSubmit} = useForm();
@@ -31,7 +31,7 @@ export default function ShowPost(props: any) {
             console.log(err);
         })
 
-    }, [])
+    }, [data])
 
     const onSubmit = async (comentdata: any) => {
         comentdata.postId = postId;

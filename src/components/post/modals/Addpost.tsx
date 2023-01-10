@@ -60,7 +60,7 @@ export default function Addpost() {
 
     return (
             <>
-            <Nav.Link href="#Addpost" onClick={handleShow}>Addpost</Nav.Link>
+            <Nav.Link onClick={handleShow}>Addpost</Nav.Link>
 
             <Modal show={show} onHide={handleClose}>
                 <Form onSubmit={handleSubmit(onSubmit)}>

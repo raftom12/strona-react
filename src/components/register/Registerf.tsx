@@ -6,9 +6,11 @@ import Alert from 'react-bootstrap/Alert';
 import axios, {AxiosError} from "axios";
 import Modal from 'react-bootstrap/Modal';
 import Nav from 'react-bootstrap/Nav';
+import {useNavigate} from 'react-router-dom';
 
 
 export default function Registerf() {
+    const navigate = useNavigate();
     const [show, setShow] = useState(false);
     const handleClose = () =>setShow(false);
     const handleShow = () => setShow(true);
@@ -32,6 +34,7 @@ export default function Registerf() {
                 data
             );
             handleClose();
+            navigate("/ConfEmail");
             window.location.reload();
 
         } catch (err) {

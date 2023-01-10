@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import {BrowserRouter} from 'react-router-dom';
 import Pasek from './components/nav/Pasek';
-import Post from './components/post/Post';
 import Footer from './components/footer/Footer';
 import reportWebVitals from './reportWebVitals';
 import {AuthProvider} from "react-auth-kit";

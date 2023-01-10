@@ -42,7 +42,7 @@ export default function Loginf() {
                 authState: { email: data.email },
             });
             handleClose();
-            navigate("/home");
+            navigate("/post/home");
             window.location.reload();
 
         } catch (err) {

@@ -2,41 +2,39 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import { render } from "react-dom";
-import ShowPost from './ShowPost';
+import ShowPost from '../modals/ShowPost';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import './post.scss'
+import '../post.scss'
 
-import React, { useState } from 'react'
+import React, { useState , useEffect} from 'react'
 import InfiniteScroll  from 'react-infinite-scroller'
 import axios, { AxiosError } from 'axios';
 
-export default function Post() {
+export default function UserPost() {
 
     const [postList, setPostList] = useState([]);
     const [hasMoreItems, setHasMoreItems] = useState(true);
 
-
-
     const deletePost = (id: number) => {
         setTimeout(() => {
             axios.delete(`https://localhost:7106/api/posts/delete`,
-                      {   params:{id},
-                          headers: { Authorization: `Bearer ${localStorage.getItem('_auth')}`}}
-                          )
+                         {   params:{id},
+                             headers: { Authorization: `Bearer ${localStorage.getItem('_auth')}`}}
+                             )
             .then((res) => {
+                window.location.reload();
             })
             .catch((err) => {
                 console.log(err);
             })
-            window.location.reload();
-}, 15)
+        }, 15)
     }
 
 
     const loadPostList = (page: number) => {
         setTimeout(() => {
-            axios.get(`https://localhost:7106/api/posts/${page}`,
+            axios.get(`https://localhost:7106/api/posts/user/${page}`,
                       {
                           headers: { Authorization: `Bearer ${localStorage.getItem('_auth')}`}}
                           )
@@ -54,7 +52,7 @@ export default function Post() {
                 console.log(err);
             })
 
-        }, 1500)
+        }, 15)
     }
 
     return (
@@ -66,7 +64,7 @@ export default function Post() {
                         loadMore={loadPostList}
                         hasMore={hasMoreItems}
                         loader={<div className="text-center">loading data ...</div>}>
-                            <Container className={'cont'}>
+                        <Container className={'cont'}>
                             <Row xs={1} md={2} className="g-4">
                                 {postList.map((post: any, Id) =>(
                                         <Col>
@@ -86,7 +84,7 @@ export default function Post() {
                                         </Col>))
                                 }
                             </Row>
-</Container>
+                        </Container>
 
                     </InfiniteScroll>
                     {hasMoreItems ? "" : <div className="text-center">no data anymore ...</div> }

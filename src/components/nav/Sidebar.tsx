@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Navbar from 'react-bootstrap/Navbar';
-import Addpost from '../post/Addpost';
+import Addpost from '../post/modals/Addpost';
 import Nav from 'react-bootstrap/Nav';
 function Sidebar() {
     const [show, setShow] = useState(false);
@@ -18,7 +18,10 @@ function Sidebar() {
                     <Offcanvas.Title>MENU</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
+                    <Nav.Link href="/post/home" onClick={handleShow}>Home</Nav.Link>
                     <Addpost />
+                    <Nav.Link href="/post/userpost" onClick={handleShow}>UserPosts</Nav.Link>
+                    <Nav.Link href="/post/searchpost" onClick={handleShow}>SearchPost</Nav.Link>
                 </Offcanvas.Body>
             </Offcanvas>
             </>
