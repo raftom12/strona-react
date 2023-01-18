@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes ,Route } from "react-router-dom"
 import Post from './components/post/basepost/Post';
 import UserPost from './components/post/userpost/UserPost';
-import SearchSend from './components/post/searchpost/SearchSend';
+import SearchPost from './components/post/searchpost/SearchPost';
 import Filler from './components/filler/Filler';
 import ConfEmail from './components/register/ConfEmail';
 import './App.css';
@@ -18,7 +18,7 @@ function App() {
               <Route path="/auth/thEmail" element ={<th/>}/>
               <Route path="/auth/confirmEmail/:email/:token" element = {<ConfirmEmail/>}/>
               <Route path="/post/userpost" element = {<UserPost />}/>
-              <Route path="/post/searchpost" element = {<SearchSend />}/>
+              <Route path="/post/searchpost" element = {<SearchPost />}/>
           </Routes>
           </>
   );

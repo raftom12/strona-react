@@ -7,7 +7,11 @@ import Footer from './components/footer/Footer';
 import reportWebVitals from './reportWebVitals';
 import {AuthProvider} from "react-auth-kit";
 import App from './App';
+import TimeAgo from 'javascript-time-ago'
 
+import pl from 'javascript-time-ago/locale/pl.json'
+TimeAgo.addDefaultLocale(pl)
+TimeAgo.addLocale(pl)
 
 
 const root = ReactDOM.createRoot(

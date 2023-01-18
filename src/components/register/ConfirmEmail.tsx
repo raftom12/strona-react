@@ -13,7 +13,7 @@ export default function ConfirmEmail() {
     console.log('email: ' + email);
     console.log('token ' + token);
     useEffect(() => {
-        axios.get(`https://localhost:7106/auth/confirmEmail/${encodedEmail}/${token}`)
+        axios.get(`https://localhost:7106/api/auth/confirmEmail/${encodedEmail}/${token}`)
         .then((res) => {
             navigate("/");
         })
@@ -21,6 +21,6 @@ export default function ConfirmEmail() {
             console.log(err);
         })
 
-    }, [email , token])
+    }, [])
     return(<></>);
 }

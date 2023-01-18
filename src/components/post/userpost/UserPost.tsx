@@ -16,6 +16,9 @@ export default function UserPost() {
     const [postList, setPostList] = useState([]);
     const [hasMoreItems, setHasMoreItems] = useState(true);
 
+    useEffect(() => {
+        }, [postList])
+
     const deletePost = (id: number) => {
         setTimeout(() => {
             axios.delete(`https://localhost:7106/api/posts/delete`,
@@ -23,7 +26,8 @@ export default function UserPost() {
                              headers: { Authorization: `Bearer ${localStorage.getItem('_auth')}`}}
                              )
             .then((res) => {
-                window.location.reload();
+                const newList = postList.filter((post: any) => post?.id !== id);
+                setPostList(newList);
             })
             .catch((err) => {
                 console.log(err);

@@ -16,6 +16,9 @@ export default function Post() {
     const [postList, setPostList] = useState([]);
     const [hasMoreItems, setHasMoreItems] = useState(true);
 
+    useEffect(() => {
+        }, [postList])
+
     const deletePost = (id: number) => {
         setTimeout(() => {
             axios.delete(`https://localhost:7106/api/posts/delete`,
@@ -23,7 +26,8 @@ export default function Post() {
                           headers: { Authorization: `Bearer ${localStorage.getItem('_auth')}`}}
                           )
             .then((res) => {
-                window.location.reload();
+                const newList = postList.filter((post: any) => post?.id !== id);
+                setPostList(newList);window.location.reload();
             })
             .catch((err) => {
                 console.log(err);
@@ -68,7 +72,7 @@ export default function Post() {
                             <Row xs={1} md={2} className="g-4">
                                 {postList.map((post: any, Id) =>(
                                         <Col>
-                                            <Card key={Id}>
+                                            <Card key={Id} >
                                                 <Card.Img variant="top"
                                                     src={post.mediaUrls} alt={"zdj1.jpg"}/>
                                                 <Card.Body>

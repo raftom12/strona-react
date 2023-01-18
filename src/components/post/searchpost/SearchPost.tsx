@@ -5,16 +5,22 @@ import { render } from "react-dom";
 import ShowPost from '../modals/ShowPost';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import Form from 'react-bootstrap/Form';
 import '../post.scss'
 
 import React, { useState , useEffect} from 'react'
 import InfiniteScroll  from 'react-infinite-scroller'
 import axios, { AxiosError } from 'axios';
 
-export default function SearchPost({Tquery}: any) {
+export default function SearchPost() {
     const [postList, setPostList] = useState([]);
+    const[query , setQuery] = useState('');
     const [hasMoreItems, setHasMoreItems] = useState(true);
-    const query = Tquery;
+
+    const clickHandler = () => {
+        //updateState();
+    }
+
     const deletePost = (id: number) => {
         setTimeout(() => {
             axios.delete(`https://localhost:7106/api/posts/delete${id}`,
@@ -22,23 +28,22 @@ export default function SearchPost({Tquery}: any) {
                              headers: { Authorization: `Bearer ${localStorage.getItem('_auth')}`}}
                              )
             .then((res) => {
-                window.location.reload();
+                const newList = postList.filter((post: any) => post?.id !== id);
+                setPostList(newList);
             })
             .catch((err) => {
                 console.log(err);
             })
         }, 15)
     }
-    console.log("query: ")
-    console.log(query)
-    console.log(Tquery)
+
     useEffect(() => {
         axios.get(`https://localhost:7106/api/posts/search`,
                   {   params: {query},
                       headers: { Authorization: `Bearer ${localStorage.getItem('_auth')}`}}
                       )
             .then((res) => {
-                const newList = postList.concat(res.data);
+                const newList = res.data;
                 setPostList(newList);
 
                 if(res.data.length===0) {
@@ -50,12 +55,39 @@ export default function SearchPost({Tquery}: any) {
             .catch((err) => {
                 console.log(err);
             })
-    }, [Tquery])
+    }, [query])
 
 
 
 
-    return (
+    return (<>
+            <Container className={'cont'}>
+
+                <Card body>
+                    <Form >
+                        <div style={{margin: "20px"}}>
+                            <Row xs={2} md={2} className="g-4">
+                                <Col>
+                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                        <Form.Control
+                                            type="text"
+                                            onChange={(e) => setQuery(e.target.value)}
+                                            placeholder="comment"
+                                            autoFocus
+                                        />
+                                    </Form.Group>
+                                </Col>
+                                <Col>
+                                    <Button variant="primary" onClick={clickHandler} >
+                                        Send
+                                    </Button>
+                                </Col>
+                            </Row>
+                        </div>
+                    </Form>
+                </Card>
+
+            </Container>
             <div>
                 <div className="section">
                         <Container className={'cont'}>
@@ -81,5 +113,6 @@ export default function SearchPost({Tquery}: any) {
                         </Container>
                 </div>
             </div>
+            </>
             )
 }
