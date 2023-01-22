@@ -5,6 +5,7 @@ import UserPost from './components/post/userpost/UserPost';
 import SearchPost from './components/post/searchpost/SearchPost';
 import Filler from './components/filler/Filler';
 import ConfEmail from './components/register/ConfEmail';
+import ConfirmReset from './components/login/ConfirmReset';
 import './App.css';
 import ConfirmEmail from './components/register/ConfirmEmail';
 
@@ -17,6 +18,8 @@ function App() {
               <Route path="/auth/confEmail" element ={<ConfEmail/>}/>
               <Route path="/auth/thEmail" element ={<th/>}/>
               <Route path="/auth/confirmEmail/:email/:token" element = {<ConfirmEmail/>}/>
+              <Route path="/account/resetPassword/:email/:token" element = {<ConfirmReset/>}/>
+
               <Route path="/post/userpost" element = {<UserPost />}/>
               <Route path="/post/searchpost" element = {<SearchPost />}/>
           </Routes>

@@ -3,11 +3,12 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import { render } from "react-dom";
 import ShowPost from '../modals/ShowPost';
+import UpdatePost from '../modals/UpdatePost';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import '../post.scss'
 
-import React, { useState , useEffect} from 'react'
+import React, { useState , useEffect, useMemo} from 'react'
 import InfiniteScroll  from 'react-infinite-scroller'
 import axios, { AxiosError } from 'axios';
 
@@ -15,9 +16,6 @@ export default function UserPost() {
 
     const [postList, setPostList] = useState([]);
     const [hasMoreItems, setHasMoreItems] = useState(true);
-
-    useEffect(() => {
-        }, [postList])
 
     const deletePost = (id: number) => {
         setTimeout(() => {
@@ -36,7 +34,7 @@ export default function UserPost() {
     }
 
 
-    const loadPostList = (page: number) => {
+const loadPostList = (page: number) => {
         setTimeout(() => {
             axios.get(`https://localhost:7106/api/posts/user/${page}`,
                       {
@@ -59,6 +57,9 @@ export default function UserPost() {
         }, 15)
     }
 
+    useEffect(() => {
+        },[setPostList])
+
     return (
             <div>
                 <div className="section">
@@ -76,12 +77,13 @@ export default function UserPost() {
                                                 <Card.Img variant="top"
                                                     src={post.mediaUrls} alt={"zdj1.jpg"}/>
                                                 <Card.Body>
-                                                    <Card.Header>{post.header}</Card.Header>
+                                                    <Card.Title>{post.header}</Card.Title>
                                                     <Card.Text>
                                                         {post.text}
                                                     </Card.Text>
                                                     <Button variant="danger" onClick={() => deletePost(post.id)}>delete</Button>
                                                     <ShowPost number={post.id}/>
+                                                    <UpdatePost number={post.id}/>
                                                 </ Card.Body>
                                             </ Card>
 

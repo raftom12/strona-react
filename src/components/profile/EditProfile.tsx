@@ -10,10 +10,11 @@ import Nav from 'react-bootstrap/Nav';
 import {useNavigate} from 'react-router-dom';
 
 
-export default function ResetPassf({trigger}: any) {
+export default function EditProfile({triggerprofile}: any) {
     const navigate = useNavigate();
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
+    const [data , setData] = useState(false);
     const handleShow = () => setShow(true);
     const [error, setError] = useState(false)
     const errorDiv = error
@@ -27,19 +28,23 @@ export default function ResetPassf({trigger}: any) {
     const{register, handleSubmit} = useForm();
 
     useEffect(() => {
-        if (trigger) {
+        if (triggerprofile) {
             handleShow();
         }
-        }, [trigger]);
+
+        }, [triggerprofile]);
 
     const onSubmit = async (data: any) => {
         try {
             const response = await axios.post(
-                    "https://localhost:7106/api/auth/sendResetPasswordLink",
-                    data
+                    "https://localhost:7106/api/profile/updateProfile",
+                    data,
+                    {
+                      headers: {Authorization: `Bearer ${localStorage.getItem('_auth')}`}
+                    },
                     );
             handleClose();
-            navigate("/auth/confEmail");
+            window.location.reload();
 
         } catch (err) {
             // @ts-ignore
@@ -51,9 +56,6 @@ export default function ResetPassf({trigger}: any) {
             console.log("Error: ", err);
         }
     };
-
-
-
 
     return (
             <>
@@ -67,9 +69,18 @@ export default function ResetPassf({trigger}: any) {
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                             <Form.Label>Email address</Form.Label>
                             <Form.Control
-                                type="email"
-                                {...register("email")}
-                                placeholder="name@example.com"
+                                type="text"
+                                {...register("firstName")}
+                                placeholder="Correct firstName"
+                                autoFocus
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                            <Form.Label>Email address</Form.Label>
+                            <Form.Control
+                                type="text"
+                                {...register("lastName")}
+                                placeholder="Correct lastName"
                                 autoFocus
                             />
                         </Form.Group>

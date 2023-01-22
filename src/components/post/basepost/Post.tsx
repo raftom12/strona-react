@@ -18,6 +18,10 @@ export default function Post() {
 
     useEffect(() => {
         }, [postList])
+    const handleOpenPost = (postId: number) => {
+        console.log(postId)
+        return(<ShowPost number={postId}/>)
+    }
 
     const deletePost = (id: number) => {
         setTimeout(() => {
@@ -76,11 +80,10 @@ export default function Post() {
                                                 <Card.Img variant="top"
                                                     src={post.mediaUrls} alt={"zdj1.jpg"}/>
                                                 <Card.Body>
-                                                    <Card.Header>{post.header}</Card.Header>
+                                                    <Card.Title>{post.header}</Card.Title>
                                                     <Card.Text>
                                                         {post.text}
                                                     </Card.Text>
-                                                    <Button variant="danger" onClick={() => deletePost(post.id)}>delete</Button>
                                                     <ShowPost number={post.id}/>
                                                 </ Card.Body>
                                             </ Card>
