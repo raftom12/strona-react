@@ -78,6 +78,7 @@ export default function ShowPost(props: any) {
                     {headers: { Authorization: `Bearer ${localStorage.getItem('_auth')}`}}
                     );
             setCount(count + 1);
+            reset();
             // @ts-ignore
         } catch (err) {
             // @ts-ignore

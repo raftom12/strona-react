@@ -82,6 +82,7 @@ export default function Profile({setTriggerprofile}: any) {
                                         </div>
                                         <div className="flex-grow-1 ms-3">
                                             <MDBCardTitle>{rendertitle(data)}</MDBCardTitle>
+                                            <MDBCardText>Nick: {rendernick(datau)} </MDBCardText>
                                             <MDBCardText>FirstName: {renderfirstname(data)} </MDBCardText>
                                             <MDBCardText>LastName: {renderlastname(data)} </MDBCardText>
                                             <MDBCardText>Email: {renderemail(data)}</MDBCardText>

@@ -18,7 +18,7 @@ class Pasek extends Component {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link href="#admin">adminpanel</Nav.Link>
+                            <Nav.Link href="/admin/Pannel">adminpanel</Nav.Link>
                         </Nav>
                         <Nav>
                            <Cond />
