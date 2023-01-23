@@ -1,4 +1,4 @@
-import React, {useState,  useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios, {AxiosError} from "axios"
 import {useNavigate, useParams} from 'react-router-dom';
 
@@ -6,21 +6,21 @@ import {useNavigate, useParams} from 'react-router-dom';
 export default function ConfirmEmail() {
     const navigate = useNavigate();
 
-    const { email }  = useParams();
-    const { token } = useParams();
-    const encodedEmail = encodeURIComponent(email?? '' );
+    const {email} = useParams();
+    const {token} = useParams();
+    const encodedEmail = encodeURIComponent(email ?? '');
     console.log('encodedEMail: ' + encodedEmail)
     console.log('email: ' + email);
     console.log('token ' + token);
     useEffect(() => {
         axios.get(`https://localhost:5001/api/auth/confirmEmail/${encodedEmail}/${token}`)
-        .then((res) => {
-            navigate("/");
-        })
-        .catch((err) => {
-            console.log(err);
-        })
+            .then((res) => {
+                navigate("/");
+            })
+            .catch((err) => {
+                console.log(err);
+            })
 
     }, [])
-    return(<></>);
+    return (<></>);
 }

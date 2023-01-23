@@ -10,17 +10,17 @@ import Nav from 'react-bootstrap/Nav';
 
 export default function Addpost() {
     const [show, setShow] = useState(false);
-    const handleClose = () =>setShow(false);
+    const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [error, setError] = useState(false)
     const errorDiv = error
-    ? <div className="error">
-        <Alert variant={'danger'}>
-            <i className="material-icons error-icon"></i>
-            {error}
-        </Alert>
-    </div>
-    : '';
+        ? <div className="error">
+            <Alert variant={'danger'}>
+                <i className="material-icons error-icon"></i>
+                {error}
+            </Alert>
+        </div>
+        : '';
 
     const {register, handleSubmit} = useForm();
 
@@ -35,15 +35,16 @@ export default function Addpost() {
 
         try {
             const response = await axios.post(
-                    "https://localhost:5001/api/posts/create",
-                    formData,
-                    {headers: {
-                        'Content-Type': 'multipart/form-data' ,
+                "https://localhost:5001/api/posts/create",
+                formData,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
                         Authorization: `Bearer ${localStorage.getItem('_auth')}`
 
                     },
-                    }
-                    );
+                }
+            );
             handleClose();
             window.location.reload();
 
@@ -59,7 +60,7 @@ export default function Addpost() {
     };
 
     return (
-            <>
+        <>
             <Nav.Link onClick={handleShow}>Addpost</Nav.Link>
 
             <Modal show={show} onHide={handleClose}>
@@ -95,7 +96,7 @@ export default function Addpost() {
                                 accept="image/*"
                                 autoFocus
                             />
-                            </Form.Group>
+                        </Form.Group>
                         {errorDiv}
                     </Modal.Body>
                     <Modal.Footer>
@@ -108,6 +109,6 @@ export default function Addpost() {
                     </Modal.Footer>
                 </Form>
             </Modal>
-            </>
-            );
+        </>
+    );
 }

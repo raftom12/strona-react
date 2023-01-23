@@ -7,18 +7,18 @@ import {useNavigate} from 'react-router-dom';
 
 export default function Logout() {
     const navigate = useNavigate();
-    const{handleSubmit} = useForm();
+    const {handleSubmit} = useForm();
     const singOut = useSignOut();
 
     const logout = () => {
-            singOut();
-            localStorage.clear();
-            navigate("/");
-            window.location.reload();
-        }
-    return(
-    <Form>
-        <Nav.Link onClick={logout} >logout</Nav.Link>
-    </Form>
-            )
+        singOut();
+        localStorage.clear();
+        navigate("/");
+        window.location.reload();
+    }
+    return (
+        <Form>
+            <Nav.Link onClick={logout}>logout</Nav.Link>
+        </Form>
+    )
 }

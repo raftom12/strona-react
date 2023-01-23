@@ -12,19 +12,19 @@ import {useNavigate} from 'react-router-dom';
 export default function Registerf() {
     const navigate = useNavigate();
     const [show, setShow] = useState(false);
-    const handleClose = () =>setShow(false);
+    const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [error, setError] = useState(false)
     const errorDiv = error
-    ? <div className="error">
-        <Alert variant={'danger'}>
-            <i className="material-icons error-icon"></i>
-            {error}
-        </Alert>
-    </div>
-    : '';
+        ? <div className="error">
+            <Alert variant={'danger'}>
+                <i className="material-icons error-icon"></i>
+                {error}
+            </Alert>
+        </div>
+        : '';
 
-    const {register,getValues, handleSubmit, watch} = useForm();
+    const {register, getValues, handleSubmit, watch} = useForm();
 
     const onSubmit = async (data: any) => {
         console.log(data)
@@ -52,7 +52,7 @@ export default function Registerf() {
         <>
             <Nav.Link href="#Register" onClick={handleShow}>Register</Nav.Link>
 
-        <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleClose}>
                 <Form onSubmit={handleSubmit(onSubmit)}>
                     <Modal.Header closeButton>
                         <Modal.Title>Register</Modal.Title>
@@ -62,7 +62,7 @@ export default function Registerf() {
                             <Form.Label>Name</Form.Label>
                             <Form.Control
                                 type="text"
-                                {...register("firstName", { required: true})}
+                                {...register("firstName", {required: true})}
                                 placeholder="firstname"
                                 autoFocus
                             />
@@ -71,7 +71,7 @@ export default function Registerf() {
                             <Form.Label>Surname</Form.Label>
                             <Form.Control
                                 type="text"
-                                {...register("lastName", { required: true})}
+                                {...register("lastName", {required: true})}
                                 placeholder="lastname"
                                 autoFocus
                             />
@@ -80,7 +80,7 @@ export default function Registerf() {
                             <Form.Label>Email address</Form.Label>
                             <Form.Control
                                 type="email"
-                                {...register("email", { required: true})
+                                {...register("email", {required: true})
                                 }
                                 placeholder="name@example.com"
                                 autoFocus
@@ -90,7 +90,7 @@ export default function Registerf() {
                             <Form.Label>Username</Form.Label>
                             <Form.Control
                                 type="text"
-                                {...register("username", { required: true})}
+                                {...register("username", {required: true})}
                                 placeholder="username"
                                 autoFocus
                             />
@@ -99,7 +99,7 @@ export default function Registerf() {
                             <Form.Label>Password</Form.Label>
                             <Form.Control
                                 type="password"
-                                {...register("password", { required: true})}
+                                {...register("password", {required: true})}
                                 placeholder="password"
                                 autoFocus/>
                         </Form.Group>

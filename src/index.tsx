@@ -10,6 +10,7 @@ import App from './App';
 import TimeAgo from 'javascript-time-ago'
 
 import pl from 'javascript-time-ago/locale/pl.json'
+
 TimeAgo.addDefaultLocale(pl)
 TimeAgo.addLocale(pl)
 
@@ -19,12 +20,12 @@ const root = ReactDOM.createRoot(
 );
 root.render(
     <React.StrictMode>
-        <AuthProvider authType={"localstorage"} authName={"_auth"} >
+        <AuthProvider authType={"localstorage"} authName={"_auth"}>
 
             <BrowserRouter>
-                <Pasek />
+                <Pasek/>
                 <App/>
-                <Footer />
+                <Footer/>
             </BrowserRouter>
         </AuthProvider>
     </React.StrictMode>

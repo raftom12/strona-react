@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 import {useForm} from 'react-hook-form';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import axios, { AxiosError } from "axios";
-import { useSignIn } from "react-auth-kit";
+import axios, {AxiosError} from "axios";
+import {useSignIn} from "react-auth-kit";
 import Nav from 'react-bootstrap/Nav';
 import {useNavigate} from 'react-router-dom';
 
@@ -21,14 +21,14 @@ export default function Loginf({setTrigger}: any) {
         handleClose();
     }
     const errorDiv = error
-    ? <div className="error">
-        <Alert variant={'danger'}>
-        <i className="material-icons error-icon"></i>
-            {error} <Nav.Link onClick={() => Resetpassword()}>Forgot your password?</Nav.Link>
-        </Alert>
-    </div>
-    : '';
-    const{register, handleSubmit} = useForm();
+        ? <div className="error">
+            <Alert variant={'danger'}>
+                <i className="material-icons error-icon"></i>
+                {error} <Nav.Link onClick={() => Resetpassword()}>Forgot your password?</Nav.Link>
+            </Alert>
+        </div>
+        : '';
+    const {register, handleSubmit} = useForm();
     const signIn = useSignIn();
 
     const onSubmit = async (data: any) => {
@@ -36,14 +36,14 @@ export default function Loginf({setTrigger}: any) {
 
         try {
             const response = await axios.post(
-                    "https://localhost:5001/api/auth/login",
-                    data
-                    );
+                "https://localhost:5001/api/auth/login",
+                data
+            );
             signIn({
                 token: response.data.jwtToken,
                 expiresIn: 3600,
                 tokenType: "Bearer",
-                authState: { email: data.email },
+                authState: {email: data.email},
             });
             handleClose();
             navigate("/post/home");
@@ -61,18 +61,16 @@ export default function Loginf({setTrigger}: any) {
     };
 
 
-
-
     return (
-            <>
+        <>
             <Nav.Link onClick={handleShow}>login</Nav.Link>
 
             <Modal show={show} onHide={handleClose}>
                 <Form onSubmit={handleSubmit(onSubmit)}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Login</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Login</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
 
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                             <Form.Label>Email address</Form.Label>
@@ -85,26 +83,26 @@ export default function Loginf({setTrigger}: any) {
                         </Form.Group>
                         <Form.Group
                             className="mb-3" controlId="exampleForm.ControlImput2"
-                            >
+                        >
                             <Form.Label>Password</Form.Label>
                             <Form.Control
                                 type="password"
                                 {...register("password")}
                                 placeholder="password"
-                                autoFocus />
+                                autoFocus/>
                         </Form.Group>
                         {errorDiv}
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="primary" type="submit">
-                        Login
-                    </Button>
-                </Modal.Footer>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Close
+                        </Button>
+                        <Button variant="primary" type="submit">
+                            Login
+                        </Button>
+                    </Modal.Footer>
                 </Form>
             </Modal>
-            </>
-            );
+        </>
+    );
 }

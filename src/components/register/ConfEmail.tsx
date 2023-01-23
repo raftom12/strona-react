@@ -2,25 +2,20 @@ import '../post/post.scss'
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import Reg from './path220.png';
+import '../post/post.scss'
 import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container'
 
 export default function ConfEmail() {
     return (
+        <Container className="cont">
             <Row xs={1} md={1} className="g-4">
-                <Col>
                 <Card>
-                    <Card.Img variant="top"
-                        alt={"zdj1.jpg"}/>
-                    <Card.Body>
-                        <Card.Header>Header</Card.Header>
-                        <Card.Text>
-                            yolo
-                        </Card.Text>
-                        <Button href="/">delete</Button>
-                    </ Card.Body>
-                </ Card>
+                    <img className="align-items-center justify-content-between" style={{height: '590px'}} src={Reg}/>
 
-                </Col>
-                </Row>
+                </ Card>
+            </Row>
+        </Container>
     )
 }

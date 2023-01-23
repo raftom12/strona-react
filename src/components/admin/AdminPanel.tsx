@@ -2,10 +2,11 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
-import React, {useState,  useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios, {AxiosError} from "axios";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Pie } from 'react-chartjs-2';
+import {Chart as ChartJS, ArcElement, Tooltip, Legend} from 'chart.js';
+import {Pie} from 'react-chartjs-2';
+import './admin.scss'
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function AdminPanel() {
@@ -22,61 +23,61 @@ export default function AdminPanel() {
     const loadfirstList = () => {
         setTimeout(() => {
             axios.get(`https://localhost:5001/api/admin/UserActivityStatsAllTime`,
-                      {
-                          headers: { Authorization: `Bearer ${localStorage.getItem('_auth')}`}}
-                          )
-            .then((res:any) => {
-               // console.log(res);
-                //@ts-ignore
-                const newList = label1.concat(res.data);
-                //console.log(newList);
-                //@ts-ignore
-                const labels = newList[0].userName;
-                //@ts-ignore
-                let label = newList.map(({ userName }) => userName);
-                let value1 = newList.map(({ postsCount }) => postsCount);
-                let value2 = newList.map(({ commentsCount }) => commentsCount);
-                let value3 = newList.map(({ filesCount }) => filesCount);
-                setLabel1(label);
-                setValue1(value1);
-                setValue2(value2);
-                setValue3(value3);
+                {
+                    headers: {Authorization: `Bearer ${localStorage.getItem('_auth')}`}
+                }
+            )
+                .then((res: any) => {
+                    // console.log(res);
+                    //@ts-ignore
+                    const newList = label1.concat(res.data);
+                    //console.log(newList);
+                    //@ts-ignore
+                    const labels = newList[0].userName;
+                    //@ts-ignore
+                    let label = newList.map(({userName}) => userName);
+                    let value1 = newList.map(({postsCount}) => postsCount);
+                    let value2 = newList.map(({commentsCount}) => commentsCount);
+                    let value3 = newList.map(({filesCount}) => filesCount);
+                    setLabel1(label);
+                    setValue1(value1);
+                    setValue2(value2);
+                    setValue3(value3);
                 })
-            .catch((err) => {
-                console.log(err);
-            })
+                .catch((err) => {
+                    console.log(err);
+                })
 
         }, 15)
     }
     const loadsecondList = () => {
         setTimeout(() => {
             axios.get(`https://localhost:5001/api/admin/UsersMemoryUsage`,
-                      {
-                          headers: { Authorization: `Bearer ${localStorage.getItem('_auth')}`}}
-                          )
-            .then((res:any) => {
-                console.log(Object.keys(res.data))
-                console.log(Object.values(res.data))
-                const newList = Object.values(res?.data)
+                {
+                    headers: {Authorization: `Bearer ${localStorage.getItem('_auth')}`}
+                }
+            )
+                .then((res: any) => {
+                    const newList = Object.values(res?.data)
 
-                //@ts-ignore
-                setLabel2(Object.keys(res?.data));
-                //@ts-ignore
-                setDatan(newList.reduce((partialSum, a) => partialSum + a, 0));
-                setDatan2(400000000-datan);
-                setValue4(Object.values(res?.data));
+                    //@ts-ignore
+                    setLabel2(Object.keys(res?.data));
+                    //@ts-ignore
+                    setDatan(newList.reduce((partialSum, a) => partialSum + a, 0));
+                    setDatan2(400000000 - datan);
+                    setValue4(Object.values(res?.data));
 
-            })
-            .catch((err) => {
-                console.log(err);
-            })
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
 
         }, 15)
     }
     useEffect(() => {
         loadfirstList();
         loadsecondList();
-        }, [])
+    }, [])
     const data1 = {
         labels: label1,
         datasets: [
@@ -96,7 +97,7 @@ export default function AdminPanel() {
                     'rgba(75, 192, 192, 0.2)',
                     'rgba(153, 102, 255, 0.2)',
                     'rgba(255, 159, 64, 0.2)',
-                    ],
+                ],
                 borderColor: [
                     'rgba(255, 99, 132, 1)',
                     'rgba(54, 162, 235, 1)',
@@ -113,7 +114,7 @@ export default function AdminPanel() {
                 ],
                 borderWidth: 1,
             },
-            ],
+        ],
     };
     const data2 = {
         labels: label1,
@@ -151,7 +152,7 @@ export default function AdminPanel() {
                 ],
                 borderWidth: 1,
             },
-            ],
+        ],
     };
     const data3 = {
         labels: label1,
@@ -174,7 +175,7 @@ export default function AdminPanel() {
                     'rgba(255, 159, 64, 0.2)',
                 ],
                 borderColor: [
-                   'rgba(255, 99, 132, 1)',
+                    'rgba(255, 99, 132, 1)',
                     'rgba(54, 162, 235, 1)',
                     'rgba(255, 206, 86, 1)',
                     'rgba(75, 192, 192, 1)',
@@ -185,15 +186,15 @@ export default function AdminPanel() {
                     'rgba(255, 206, 86, 1)',
                     'rgba(75, 192, 192, 1)',
                     'rgba(153, 102, 255, 1)',
-                   'rgba(255, 159, 64, 1)',
+                    'rgba(255, 159, 64, 1)',
                 ],
                 borderWidth: 1,
             },
-            ],
+        ],
     };
     const data4 = {
         labels: label2,
-    datasets: [
+        datasets: [
             {
                 label: '# of Votes',
                 data: value4,
@@ -227,12 +228,12 @@ export default function AdminPanel() {
                 ],
                 borderWidth: 1,
             },
-            ],
-};
+        ],
+    };
 
     const data5 = {
-        labels: ["taken","free"],
-    datasets: [
+        labels: ["taken", "free"],
+        datasets: [
             {
                 label: '# of Votes',
                 data: [datan, datan2],
@@ -249,7 +250,7 @@ export default function AdminPanel() {
                     'rgba(75, 192, 192, 0.2)',
                     'rgba(153, 102, 255, 0.2)',
                     'rgba(255, 159, 64, 0.2)',
-                    ],
+                ],
                 borderColor: [
                     'rgba(255, 99, 132, 1)',
                     'rgba(54, 162, 235, 1)',
@@ -263,76 +264,72 @@ export default function AdminPanel() {
                     'rgba(75, 192, 192, 1)',
                     'rgba(153, 102, 255, 1)',
                     'rgba(255, 159, 64, 1)',
-                    ],
+                ],
                 borderWidth: 1,
             },
-            ],
-};
-
-
-
-
+        ],
+    };
 
 
     return (
-            <Container className={'cont'}>
+        <Container className={'cont'}>
             <Row xs={1} md={2} className="g-4">
-                        <Col>
-                            <Card>
-                                <Pie data={data1} />
-                                <Card.Body>
-                                    <Card.Title>Posts </Card.Title>
-                                    <Card.Text>
-                                        which user wrote the most?
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col>
-                            <Card>
-                                <Pie data={data2} />
-                                <Card.Body>
-                                    <Card.Title>Comments </Card.Title>
-                                    <Card.Text>
-                                        which user wrote the most?
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col>
-                            <Card>
-                                <Pie data={data3} />
-                                <Card.Body>
-                                    <Card.Title>Files </Card.Title>
-                                    <Card.Text>
-                                        which user add the most?
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col>
-                        <Card>
-                            <Pie data={data4} />
-                            <Card.Body>
-                                <Card.Title>Space </Card.Title>
-                                <Card.Text>
-                                    which user take the most?
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                        </Col>
-            </Row>
                 <Col>
                     <Card>
-                        <Pie data={data5} />
+                        <Pie data={data1}/>
                         <Card.Body>
-                            <Card.Title>Space total </Card.Title>
+                            <Card.Title>Posts </Card.Title>
                             <Card.Text>
-                                When to upgrade?
+                                which user wrote the most?
                             </Card.Text>
                         </Card.Body>
                     </Card>
                 </Col>
-            </Container>
-            );
+                <Col>
+                    <Card>
+                        <Pie data={data2}/>
+                        <Card.Body>
+                            <Card.Title>Comments </Card.Title>
+                            <Card.Text>
+                                which user wrote the most?
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col>
+                    <Card>
+                        <Pie data={data3}/>
+                        <Card.Body>
+                            <Card.Title>Files </Card.Title>
+                            <Card.Text>
+                                which user add the most?
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col>
+                    <Card>
+                        <Pie data={data4}/>
+                        <Card.Body>
+                            <Card.Title>Space </Card.Title>
+                            <Card.Text>
+                                which user take the most?
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
+            <Col >
+                <Card className={"cont"}>
+                    <Pie data={data5}/>
+                    <Card.Body>
+                        <Card.Title>Space total </Card.Title>
+                        <Card.Text>
+                            When to upgrade?
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+            </Col>
+        </Container>
+    );
 }

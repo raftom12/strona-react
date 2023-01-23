@@ -1,11 +1,11 @@
-import React, {useState,  useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 import {useForm} from 'react-hook-form';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import axios, { AxiosError } from "axios";
-import { useSignIn } from "react-auth-kit";
+import axios, {AxiosError} from "axios";
+import {useSignIn} from "react-auth-kit";
 import Nav from 'react-bootstrap/Nav';
 import {useNavigate} from 'react-router-dom';
 
@@ -17,27 +17,27 @@ export default function ResetPassf({trigger}: any) {
     const handleShow = () => setShow(true);
     const [error, setError] = useState(false)
     const errorDiv = error
-    ? <div className="error">
-        <Alert variant={'danger'}>
-            <i className="material-icons error-icon"></i>
-            {error}
-        </Alert>
-    </div>
-    : '';
-    const{register, handleSubmit} = useForm();
+        ? <div className="error">
+            <Alert variant={'danger'}>
+                <i className="material-icons error-icon"></i>
+                {error}
+            </Alert>
+        </div>
+        : '';
+    const {register, handleSubmit} = useForm();
 
     useEffect(() => {
         if (trigger) {
             handleShow();
         }
-        }, [trigger]);
+    }, [trigger]);
 
     const onSubmit = async (data: any) => {
         try {
             const response = await axios.post(
-                    "https://localhost:5001/api/auth/sendResetPasswordLink",
-                    data
-                    );
+                "https://localhost:5001/api/auth/sendResetPasswordLink",
+                data
+            );
             handleClose();
             navigate("/auth/confEmail");
 
@@ -53,10 +53,8 @@ export default function ResetPassf({trigger}: any) {
     };
 
 
-
-
     return (
-            <>
+        <>
             <Modal show={show} onHide={handleClose}>
                 <Form onSubmit={handleSubmit(onSubmit)}>
                     <Modal.Header closeButton>
@@ -85,6 +83,6 @@ export default function ResetPassf({trigger}: any) {
                     </Modal.Footer>
                 </Form>
             </Modal>
-            </>
-            );
+        </>
+    );
 }

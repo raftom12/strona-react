@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
+import {PencilSquare} from 'react-bootstrap-icons';
+
 import {useForm} from 'react-hook-form';
 import axios, {AxiosError} from "axios";
 import Modal from 'react-bootstrap/Modal';
@@ -10,18 +12,18 @@ import Nav from 'react-bootstrap/Nav';
 
 export default function UpdatePost(props: any) {
     const [show, setShow] = useState(false);
-    const handleClose = () =>setShow(false);
+    const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const postId = props.number;
     const [error, setError] = useState(false)
     const errorDiv = error
-    ? <div className="error">
-        <Alert variant={'danger'}>
-            <i className="material-icons error-icon"></i>
-            {error}
-        </Alert>
-    </div>
-    : '';
+        ? <div className="error">
+            <Alert variant={'danger'}>
+                <i className="material-icons error-icon"></i>
+                {error}
+            </Alert>
+        </div>
+        : '';
 
     const {register, handleSubmit} = useForm();
 
@@ -37,15 +39,16 @@ export default function UpdatePost(props: any) {
 
         try {
             const response = await axios.post(
-                    "https://localhost:5001/api/posts/update",
-                    formData,
-                    {headers: {
-                        'Content-Type': 'multipart/form-data' ,
+                "https://localhost:5001/api/posts/update",
+                formData,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
                         Authorization: `Bearer ${localStorage.getItem('_auth')}`
 
                     },
-                    }
-                    );
+                }
+            );
             handleClose();
             window.location.reload();
 
@@ -61,8 +64,8 @@ export default function UpdatePost(props: any) {
     };
 
     return (
-            <>
-            <Button variant="danger" onClick={handleShow}>Update</Button>
+        <>
+        <PencilSquare onClick={handleShow} style={{width: "25", height: "25"}}/>
 
             <Modal show={show} onHide={handleClose}>
                 <Form onSubmit={handleSubmit(onSubmit)}>
@@ -110,6 +113,6 @@ export default function UpdatePost(props: any) {
                     </Modal.Footer>
                 </Form>
             </Modal>
-            </>
-            );
+        </>
+    );
 }
