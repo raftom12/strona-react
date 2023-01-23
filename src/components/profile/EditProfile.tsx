@@ -62,12 +62,12 @@ export default function EditProfile({triggerprofile}: any) {
             <Modal show={show} onHide={handleClose}>
                 <Form onSubmit={handleSubmit(onSubmit)}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Reset your password</Modal.Title>
+                        <Modal.Title>Edit you'r Profile</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
 
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <Form.Label>Email address</Form.Label>
+                            <Form.Label>firstName</Form.Label>
                             <Form.Control
                                 type="text"
                                 {...register("firstName")}
@@ -76,7 +76,7 @@ export default function EditProfile({triggerprofile}: any) {
                             />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <Form.Label>Email address</Form.Label>
+                            <Form.Label>LastName</Form.Label>
                             <Form.Control
                                 type="text"
                                 {...register("lastName")}

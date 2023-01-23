@@ -11,7 +11,7 @@ function Sidebar() {
 
     return (
             <>
-            <Navbar.Brand onClick={handleShow}>Studentbook</Navbar.Brand>
+            <Navbar.Brand onClick={handleShow}><img style={{height: '40px'}} src="https://localhost:7106/media/lologo.png"/></Navbar.Brand>
 
             <Offcanvas show={show} onHide={handleClose}>
                 <Offcanvas.Header closeButton>

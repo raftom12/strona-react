@@ -15,18 +15,21 @@ export default function AdminPanel() {
     const [value2, setValue2] = useState([]);
     const [value3, setValue3] = useState([]);
 
-
-    const loadPostList = () => {
+    const [label2, setLabel2] = useState([]);
+    const [value4, setValue4] = useState([]);
+    const [datan, setDatan] = useState(0);
+    const [datan2, setDatan2] = useState(0);
+    const loadfirstList = () => {
         setTimeout(() => {
             axios.get(`https://localhost:7106/api/admin/UserActivityStatsAllTime`,
                       {
                           headers: { Authorization: `Bearer ${localStorage.getItem('_auth')}`}}
                           )
             .then((res:any) => {
-                console.log(res);
+               // console.log(res);
                 //@ts-ignore
                 const newList = label1.concat(res.data);
-                console.log(newList);
+                //console.log(newList);
                 //@ts-ignore
                 const labels = newList[0].userName;
                 //@ts-ignore
@@ -36,8 +39,8 @@ export default function AdminPanel() {
                 let value3 = newList.map(({ filesCount }) => filesCount);
                 setLabel1(label);
                 setValue1(value1);
-                setValue1(value2);
-                setValue1(value3);
+                setValue2(value2);
+                setValue3(value3);
                 })
             .catch((err) => {
                 console.log(err);
@@ -45,8 +48,34 @@ export default function AdminPanel() {
 
         }, 15)
     }
+    const loadsecondList = () => {
+        setTimeout(() => {
+            axios.get(`https://localhost:7106/api/admin/UsersMemoryUsage`,
+                      {
+                          headers: { Authorization: `Bearer ${localStorage.getItem('_auth')}`}}
+                          )
+            .then((res:any) => {
+                console.log(Object.keys(res.data))
+                console.log(Object.values(res.data))
+                const newList = Object.values(res?.data)
+
+                //@ts-ignore
+                setLabel2(Object.keys(res?.data));
+                //@ts-ignore
+                setDatan(newList.reduce((partialSum, a) => partialSum + a, 0));
+                setDatan2(400000000-datan);
+                setValue4(Object.values(res?.data));
+
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+
+        }, 15)
+    }
     useEffect(() => {
-        loadPostList();
+        loadfirstList();
+        loadsecondList();
         }, [])
     const data1 = {
         labels: label1,
@@ -57,12 +86,30 @@ export default function AdminPanel() {
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
-                    'rgba(54, 62, 135, 0.2)'
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
                     ],
                 borderColor: [
                     'rgba(255, 99, 132, 1)',
                     'rgba(54, 162, 235, 1)',
-                    'rgba(54, 62, 135, 1)'
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
                 ],
                 borderWidth: 1,
             },
@@ -77,12 +124,30 @@ export default function AdminPanel() {
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
-                    'rgba(54, 62, 135, 0.2)'
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
                 ],
                 borderColor: [
                     'rgba(255, 99, 132, 1)',
                     'rgba(54, 162, 235, 1)',
-                    'rgba(54, 62, 135, 1)'
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
                 ],
                 borderWidth: 1,
             },
@@ -97,19 +162,112 @@ export default function AdminPanel() {
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
-                    'rgba(54, 62, 135, 0.2)'
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
                 ],
                 borderColor: [
+                   'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
                     'rgba(255, 99, 132, 1)',
                     'rgba(54, 162, 235, 1)',
-                    'rgba(54, 62, 135, 1)'
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                   'rgba(255, 159, 64, 1)',
                 ],
                 borderWidth: 1,
             },
             ],
     };
+    const data4 = {
+        labels: label2,
+    datasets: [
+            {
+                label: '# of Votes',
+                data: value4,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                ],
+                borderWidth: 1,
+            },
+            ],
+};
 
-
+    const data5 = {
+        labels: ["taken","free"],
+    datasets: [
+            {
+                label: '# of Votes',
+                data: [datan, datan2],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    ],
+                borderWidth: 1,
+            },
+            ],
+};
 
 
 
@@ -152,8 +310,29 @@ export default function AdminPanel() {
                                 </Card.Body>
                             </Card>
                         </Col>
-
+                        <Col>
+                        <Card>
+                            <Pie data={data4} />
+                            <Card.Body>
+                                <Card.Title>Space </Card.Title>
+                                <Card.Text>
+                                    which user take the most?
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
+                        </Col>
             </Row>
+                <Col>
+                    <Card>
+                        <Pie data={data5} />
+                        <Card.Body>
+                            <Card.Title>Space total </Card.Title>
+                            <Card.Text>
+                                When to upgrade?
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
             </Container>
             );
 }

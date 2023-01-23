@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="202.91255mm"
+   height="49.615524mm"
+   viewBox="0 0 202.91255 49.615524"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   sodipodi:docname="rejestracja.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.4324916"
+     inkscape:cx="338.22188"
+     inkscape:cy="625.83265"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <rect
+       x="37.696556"
+       y="617.80469"
+       width="821.64532"
+       height="129.14561"
+       id="rect471" />
+  </defs>
+  <g
+     inkscape:label="Warstwa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-7.414961,-128.31959)">
+    <path
+       style="fill:#00ffff;stroke-width:0.264583"
+       d="m 15.884328,144.62127 c 58.909376,29.29871 122.931372,27.89009 177.313422,1.10821 l -3.50933,-5.17165 c -56.21798,23.88453 -110.400928,25.8007 -171.033569,-1.47761 z"
+       id="path220"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="path220.svg"
+       inkscape:export-xdpi="89.579384"
+       inkscape:export-ydpi="89.579384" />
+    <path
+       style="fill:#00ffff;stroke-width:0.264583"
+       d="m 14.710483,153.35468 -7.2955222,-3.70247 11.1208792,-21.33262 7.48915,4.06727 z"
+       id="path285" />
+    <path
+       style="fill:#00ffff;stroke-width:0.264583"
+       d="m 183.823,132.93865 7.13591,-4.00147 11.53665,21.11066 -7.54675,3.95936 z"
+       id="path285-3" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,7.7574626,7.3880597)"
+       id="text469"
+       style="font-size:24px;white-space:pre;shape-inside:url(#rect471);display:inline;fill:#00ffff"><tspan
+         x="37.697266"
+         y="639.70062"
+         id="tspan839"><tspan
+           style="font-weight:bold;-inkscape-font-specification:'sans-serif Bold';fill:#000000"
+           id="tspan837">PROSZĘ ODWIEDZIĆ EMAIL W CELU POTWIERDZENIA</tspan></tspan></text>
+  </g>
+</svg>
