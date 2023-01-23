@@ -35,7 +35,7 @@ export default function Addpost() {
 
         try {
             const response = await axios.post(
-                    "https://localhost:7106/api/posts/create",
+                    "https://localhost:5001/api/posts/create",
                     formData,
                     {headers: {
                         'Content-Type': 'multipart/form-data' ,

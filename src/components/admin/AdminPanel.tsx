@@ -21,7 +21,7 @@ export default function AdminPanel() {
     const [datan2, setDatan2] = useState(0);
     const loadfirstList = () => {
         setTimeout(() => {
-            axios.get(`https://localhost:7106/api/admin/UserActivityStatsAllTime`,
+            axios.get(`https://localhost:5001/api/admin/UserActivityStatsAllTime`,
                       {
                           headers: { Authorization: `Bearer ${localStorage.getItem('_auth')}`}}
                           )
@@ -50,7 +50,7 @@ export default function AdminPanel() {
     }
     const loadsecondList = () => {
         setTimeout(() => {
-            axios.get(`https://localhost:7106/api/admin/UsersMemoryUsage`,
+            axios.get(`https://localhost:5001/api/admin/UsersMemoryUsage`,
                       {
                           headers: { Authorization: `Bearer ${localStorage.getItem('_auth')}`}}
                           )

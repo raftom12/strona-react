@@ -24,7 +24,7 @@ export default function Profile({setTriggerprofile}: any) {
 
     useEffect(() => {
         setTimeout(() => {
-        axios.get(`https://localhost:7106/api/profile/getCurrentUser`,
+        axios.get(`https://localhost:5001/api/profile/getCurrentUser`,
                   {
                       headers: {Authorization: `Bearer ${localStorage.getItem('_auth')}`}
                   })
@@ -37,7 +37,7 @@ export default function Profile({setTriggerprofile}: any) {
         }, 15)
 
     setTimeout(() => {
-        axios.get(`https://localhost:7106/api/profile/UserActivityStatsAllTime`,
+        axios.get(`https://localhost:5001/api/profile/UserActivityStatsAllTime`,
                   {
                       headers: {Authorization: `Bearer ${localStorage.getItem('_auth')}`}
                   })

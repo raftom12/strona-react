@@ -20,7 +20,7 @@ export default function SearchPost() {
 
     const deletePost = (id: number) => {
         setTimeout(() => {
-            axios.delete(`https://localhost:7106/api/posts/delete${id}`,
+            axios.delete(`https://localhost:5001/api/posts/delete${id}`,
                          {
                              headers: { Authorization: `Bearer ${localStorage.getItem('_auth')}`}}
                              )
@@ -35,7 +35,7 @@ export default function SearchPost() {
     }
 
     useEffect(() => {
-        axios.get(`https://localhost:7106/api/posts/search`,
+        axios.get(`https://localhost:5001/api/posts/search`,
                   {   params: {query},
                       headers: { Authorization: `Bearer ${localStorage.getItem('_auth')}`}}
                       )

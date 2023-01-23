@@ -3,6 +3,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import Navbar from 'react-bootstrap/Navbar';
 import Addpost from '../post/modals/Addpost';
 import Nav from 'react-bootstrap/Nav';
+import logo from './lologo.png';
 function Sidebar() {
     const [show, setShow] = useState(false);
 
@@ -11,7 +12,8 @@ function Sidebar() {
 
     return (
             <>
-            <Navbar.Brand onClick={handleShow}><img style={{height: '40px'}} src="https://localhost:7106/media/lologo.png"/></Navbar.Brand>
+                {/* eslint-disable-next-line jsx-a11y/alt-text */}
+            <Navbar.Brand onClick={handleShow}> <img style={{height: '40px'}} src={logo} /></Navbar.Brand>
 
             <Offcanvas show={show} onHide={handleClose}>
                 <Offcanvas.Header closeButton>

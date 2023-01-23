@@ -36,7 +36,7 @@ export default function Loginf({setTrigger}: any) {
 
         try {
             const response = await axios.post(
-                    "https://localhost:7106/api/auth/login",
+                    "https://localhost:5001/api/auth/login",
                     data
                     );
             signIn({

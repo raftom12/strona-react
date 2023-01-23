@@ -19,7 +19,7 @@ export default function UserPost() {
 
     const deletePost = (id: number) => {
         setTimeout(() => {
-            axios.delete(`https://localhost:7106/api/posts/delete`,
+            axios.delete(`https://localhost:5001/api/posts/delete`,
                          {   params:{id},
                              headers: { Authorization: `Bearer ${localStorage.getItem('_auth')}`}}
                              )
@@ -36,7 +36,7 @@ export default function UserPost() {
 
 const loadPostList = (page: number) => {
         setTimeout(() => {
-            axios.get(`https://localhost:7106/api/posts/user/${page}`,
+            axios.get(`https://localhost:5001/api/posts/user/${page}`,
                       {
                           headers: { Authorization: `Bearer ${localStorage.getItem('_auth')}`}}
                           )

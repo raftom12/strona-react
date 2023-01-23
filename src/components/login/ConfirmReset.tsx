@@ -36,7 +36,7 @@ export default function ConfirmReset() {
         data.token = decodedtoken;
         try {
             const response = await axios.post(
-                    "https://localhost:7106/api/auth/resetPassword",
+                    "https://localhost:5001/api/auth/resetPassword",
                     data
                     );
             handleClose();

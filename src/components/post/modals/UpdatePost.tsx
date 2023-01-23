@@ -37,7 +37,7 @@ export default function UpdatePost(props: any) {
 
         try {
             const response = await axios.post(
-                    "https://localhost:7106/api/posts/update",
+                    "https://localhost:5001/api/posts/update",
                     formData,
                     {headers: {
                         'Content-Type': 'multipart/form-data' ,

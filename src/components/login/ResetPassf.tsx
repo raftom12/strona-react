@@ -35,7 +35,7 @@ export default function ResetPassf({trigger}: any) {
     const onSubmit = async (data: any) => {
         try {
             const response = await axios.post(
-                    "https://localhost:7106/api/auth/sendResetPasswordLink",
+                    "https://localhost:5001/api/auth/sendResetPasswordLink",
                     data
                     );
             handleClose();

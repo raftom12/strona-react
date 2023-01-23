@@ -30,7 +30,7 @@ export default function Registerf() {
         console.log(data)
         try {
             const response = await axios.post(
-                "https://localhost:7106/api/auth/register",
+                "https://localhost:5001/api/auth/register",
                 data
             );
             handleClose();

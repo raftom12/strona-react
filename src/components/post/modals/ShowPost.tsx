@@ -32,7 +32,7 @@ export default function ShowPost(props: any) {
     const{register, handleSubmit, reset} = useForm();
 
     const call =() => {
-        axios.get(`https://localhost:7106/api/posts/getById`,
+        axios.get(`https://localhost:5001/api/posts/getById`,
                   {
                       params: {postId},
                       headers: {Authorization: `Bearer ${localStorage.getItem('_auth')}`}
@@ -56,7 +56,7 @@ export default function ShowPost(props: any) {
         const loki = JSON.parse(test?? "");
         if(email == loki.email){
             setTimeout(() => {
-                axios.delete(`https://localhost:7106/api/comments/delete`,
+                axios.delete(`https://localhost:5001/api/comments/delete`,
                              {   params:{id},
                                  headers: { Authorization: `Bearer ${localStorage.getItem('_auth')}`}}
                                  )
@@ -73,7 +73,7 @@ export default function ShowPost(props: any) {
         comentdata.postId = postId;
     try {
             const response = await axios.post(
-                    "https://localhost:7106/api/comments/create",
+                    "https://localhost:5001/api/comments/create",
                     comentdata,
                     {headers: { Authorization: `Bearer ${localStorage.getItem('_auth')}`}}
                     );

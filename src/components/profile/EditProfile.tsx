@@ -37,7 +37,7 @@ export default function EditProfile({triggerprofile}: any) {
     const onSubmit = async (data: any) => {
         try {
             const response = await axios.post(
-                    "https://localhost:7106/api/profile/updateProfile",
+                    "https://localhost:5001/api/profile/updateProfile",
                     data,
                     {
                       headers: {Authorization: `Bearer ${localStorage.getItem('_auth')}`}
